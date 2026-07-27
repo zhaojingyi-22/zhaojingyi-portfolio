@@ -1,6 +1,8 @@
 (function(){
   "use strict";
 
+  var CDN = window.CDN_BASE || '';
+
   /* ---------- 数据源（与首页作品卡完全一致） ---------- */
   var WORKS = [
     {
@@ -221,7 +223,7 @@
   var gallery = document.getElementById("workGallery");
   work.images.forEach(function(src, i){
     var img = document.createElement("img");
-    img.src = src;
+    img.src = CDN + src;
     img.alt = work.title + " — 图 " + (i + 1);
     img.loading = i === 0 ? "eager" : "lazy";
     gallery.appendChild(img);
