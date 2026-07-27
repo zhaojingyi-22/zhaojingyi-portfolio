@@ -9,11 +9,11 @@
       title: "苏园馥品牌设计",
       year: "2024",
       category: "brand",
-      cover: "assets/works/brand-suyuan-02.png",
+      cover: "assets/works/brand-suyuan-02.jpg",
       images: [
-        "assets/works/brand-suyuan-02.png",
-        "assets/works/brand-suyuan-01.png",
-        "assets/works/brand-suyuan-03.png"
+        "assets/works/brand-suyuan-02.jpg",
+        "assets/works/brand-suyuan-01.jpg",
+        "assets/works/brand-suyuan-03.jpg"
       ],
       tags: ["品牌定位", "标志设计", "标准字", "色彩体系", "包装延展"],
       desc: "<p>以苏州园林与东方香氛为灵感，为「苏园馥 Suyuan Fragrance」完成品牌定位、命名、标志、字体、色彩体系与包装延展。从品牌核心关键词到 VI 应用落地，构建一套完整的东方香氛品牌视觉系统。</p>",
@@ -29,10 +29,10 @@
       title: "乳酪司康详情页设计",
       year: "2025",
       category: "ecommerce",
-      cover: "assets/works/ecom-scone-01.png",
+      cover: "assets/works/ecom-scone-01.jpg",
       images: [
-        "assets/works/ecom-scone-01.png",
-        "assets/works/ecom-scone-02.png"
+        "assets/works/ecom-scone-01.jpg",
+        "assets/works/ecom-scone-02.jpg"
       ],
       tags: ["天猫", "详情页", "食品类目"],
       desc: "<p>为烘焙品牌设计天猫/淘宝详情页，以明亮轻快的果绿色调突出「减糖轻脂」的产品卖点。通过场景化食材展示、卖点模块拆解与优惠券区布局，提升页面停留与转化。</p>",
@@ -48,10 +48,10 @@
       title: "弥鹿笔袋详情页设计",
       year: "2025",
       category: "ecommerce",
-      cover: "assets/works/ecom-mideer-01.png",
+      cover: "assets/works/ecom-mideer-01.jpg",
       images: [
-        "assets/works/ecom-mideer-01.png",
-        "assets/works/ecom-mideer-02.png"
+        "assets/works/ecom-mideer-01.jpg",
+        "assets/works/ecom-mideer-02.jpg"
       ],
       tags: ["京东", "详情页", "儿童文具"],
       desc: "<p>针对儿童文具品类，为 mideer 笔袋设计电商详情页。以柔和的糖果色与趣味排版传递「专为小学生设计」的产品心智，功能分区可视化呈现，降低家长决策成本。</p>",
@@ -67,10 +67,10 @@
       title: "可口可乐联名杯详情页设计",
       year: "2024",
       category: "ecommerce",
-      cover: "assets/works/ecom-cocacola-01.png",
+      cover: "assets/works/ecom-cocacola-01.jpg",
       images: [
-        "assets/works/ecom-cocacola-01.png",
-        "assets/works/ecom-cocacola-02.png"
+        "assets/works/ecom-cocacola-01.jpg",
+        "assets/works/ecom-cocacola-02.jpg"
       ],
       tags: ["天猫", "联名款", "详情页"],
       desc: "<p>为 GERM × Coca-Cola 联名星钻吸管杯设计电商详情页。粉绿撞色搭配清透产品场景，强化「一杯三饮」「母婴级 TRITAN 材质」等核心卖点，兼顾颜值表达与功能信任。</p>",
@@ -86,12 +86,12 @@
       title: "藻韵敦煌文创设计",
       year: "2025",
       category: "creative",
-      cover: "assets/works/creative-dunhuang-01.png",
+      cover: "assets/works/creative-dunhuang-01.jpg",
       images: [
-        "assets/works/creative-dunhuang-01.png",
-        "assets/works/creative-dunhuang-02.png",
-        "assets/works/creative-dunhuang-03.png",
-        "assets/works/creative-dunhuang-04.png"
+        "assets/works/creative-dunhuang-01.jpg",
+        "assets/works/creative-dunhuang-02.jpg",
+        "assets/works/creative-dunhuang-03.jpg",
+        "assets/works/creative-dunhuang-04.jpg"
       ],
       tags: ["毕业设计", "敦煌藻井", "文创延展"],
       desc: "<p>2025 毕业设计作品。以敦煌莫高窟藻井图案为研究对象，提取不同朝代纹样进行再设计与图案化表达，构建基于敦煌藻井的文创图案设计体系，并延展至丝巾、包装、文具等载体。</p>",
@@ -107,9 +107,9 @@
       title: "海报设计合集",
       year: "2023–2024",
       category: "other",
-      cover: "assets/works/other-poster-01.png",
+      cover: "assets/works/other-poster-01.jpg",
       images: [
-        "assets/works/other-poster-01.png"
+        "assets/works/other-poster-01.jpg"
       ],
       tags: ["海报", "平面设计"],
       desc: "<p>汇集不同主题与风格的平面海报练习与商稿，覆盖节日营销、美食、家居、文化等题材，展现排版、配色与视觉张力的多面性。</p>",
@@ -125,9 +125,9 @@
       title: "手绘本封面设计",
       year: "2024",
       category: "other",
-      cover: "assets/works/other-book-01.png",
+      cover: "assets/works/other-book-01.jpg",
       images: [
-        "assets/works/other-book-01.png"
+        "assets/works/other-book-01.jpg"
       ],
       tags: ["绘本", "封面", "插画"],
       desc: "<p>以《龟兔赛跑》为主题的手绘本封面设计，用高饱和撞色与丰富场景叙事构建童话感，兼顾儿童绘本的趣味性与封面货架吸睛度。</p>",
@@ -143,9 +143,9 @@
       title: "插画与个人创作",
       year: "2021–2024",
       category: "other",
-      cover: "assets/works/other-illust-01.png",
+      cover: "assets/works/other-illust-01.jpg",
       images: [
-        "assets/works/other-illust-01.png"
+        "assets/works/other-illust-01.jpg"
       ],
       tags: ["插画", "个人创作"],
       desc: "<p>个人兴趣驱动的插画与手绘练习合集，涵盖人物肖像、场景插画、实验性构图等。画画是日常审美训练，也是商业项目中创意表现的储备。</p>",
