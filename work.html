@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作品 · 赵靖贻设计作品集</title>
+<meta name="description" content="赵靖贻设计作品集 — 单作品详情，上下滚动浏览完整图集。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d0d0d'/><text x='50' y='68' font-size='56' font-weight='700' fill='%23E11D2D' text-anchor='middle' font-family='sans-serif'>赵</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">赵靖贻<span class="logo-dot">.</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#about" class="nav-link">关于</a>
+      <a href="index.html#works" class="nav-link">作品</a>
+      <a href="index.html#contact" class="nav-link">联系</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- WORK HERO -->
+<section class="work-hero">
+  <div class="work-hero-inner">
+    <a href="index.html#works" class="work-back"><span class="arrow">←</span> 返回作品列表</a>
+    <p class="work-hero-cat" id="workCat">—</p>
+    <h1 class="work-hero-title" id="workTitle">作品</h1>
+    <div class="work-hero-meta" id="workMeta"></div>
+  </div>
+</section>
+
+<!-- WORK BODY -->
+<section class="work-body">
+  <div class="work-desc" id="workDesc"></div>
+  <div class="work-gallery" id="workGallery"></div>
+</section>
+
+<!-- PAGER -->
+<nav class="work-pager">
+  <a href="#" id="pagerPrev">
+    <span class="arrow prev">←</span>
+    <span>
+      <span class="label">PREVIOUS</span>
+      <span class="pager-title" id="pagerPrevTitle">—</span>
+    </span>
+  </a>
+  <a href="#" id="pagerNext">
+    <span>
+      <span class="label">NEXT</span>
+      <span class="pager-title" id="pagerNextTitle">—</span>
+    </span>
+    <span class="arrow next">→</span>
+  </a>
+</nav>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© 2026 赵靖贻 · 用视觉设计驱动电商增长</span>
+    <span class="footer-cred">Designed & coded with intent.</span>
+  </div>
+</footer>
+
+<script>
+  // EdgeOne 预览令牌透传：给所有内部链接自动带上 eo_token / eo_time
+  (function(){
+    var p = new URLSearchParams(location.search);
+    var token = p.get("eo_token");
+    var time = p.get("eo_time");
+    if(!token) return;
+    function patchHref(href){
+      if(!href) return href;
+      if(href.indexOf("index.html") === 0 || href.indexOf("work.html") === 0){
+        var sep = href.indexOf("?") === -1 ? "?" : "&";
+        return href + sep + "eo_token=" + encodeURIComponent(token) + (time ? "&eo_time=" + encodeURIComponent(time) : "");
+      }
+      return href;
+    }
+    function patchAll(){
+      document.querySelectorAll('a[href]').forEach(function(a){
+        var orig = a.getAttribute("href");
+        var patched = patchHref(orig);
+        if(patched !== orig) a.setAttribute("href", patched);
+      });
+    }
+    // 先 patch 已有的 HTML 链接，等 work.js 执行后再 patch 动态生成的分页链接
+    patchAll();
+    if(document.readyState !== "loading"){ patchAll(); }
+    else { document.addEventListener("DOMContentLoaded", patchAll); }
+    // 兜底：work.js 同步执行后再 patch 一次分页链接
+    setTimeout(patchAll, 0);
+  })();
+</script>
+<script src="js/work.js"></script>
+<script>
+  // 共享的导航滚动 + 移动端菜单
+  (function(){
+    var nav = document.getElementById("nav");
+    function onScroll(){
+      if(window.scrollY > 40){ nav.classList.add("scrolled"); }
+      else{ nav.classList.remove("scrolled"); }
+    }
+    window.addEventListener("scroll", onScroll, {passive:true});
+    onScroll();
+    var navToggle = document.getElementById("navToggle");
+    var navLinks = document.getElementById("navLinks");
+    if(navToggle){
+      navToggle.addEventListener("click", function(){
+        navToggle.classList.toggle("open");
+        navLinks.classList.toggle("open");
+      });
+    }
+    // 再次 patch 分页链接（work.js 已执行完毕）
+    var p = new URLSearchParams(location.search);
+    var token = p.get("eo_token");
+    var time = p.get("eo_time");
+    if(token){
+      document.querySelectorAll('a[href^="work.html"], a[href^="index.html"]').forEach(function(a){
+        var href = a.getAttribute("href");
+        if(href.indexOf("eo_token") === -1){
+          var sep = href.indexOf("?") === -1 ? "?" : "&";
+          a.setAttribute("href", href + sep + "eo_token=" + encodeURIComponent(token) + (time ? "&eo_time=" + encodeURIComponent(time) : ""));
+        }
+      });
+    }
+  })();
+</script>
+</body>
+</html>
