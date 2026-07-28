@@ -11,11 +11,14 @@
       title: "苏园馥品牌设计",
       year: "2024",
       category: "brand",
-      cover: "assets/works/brand-suyuan-02.jpg",
+      cover: "assets/works/brand-suyuan-05.jpg",
       images: [
-        "assets/works/brand-suyuan-02.jpg",
         "assets/works/brand-suyuan-01.jpg",
-        "assets/works/brand-suyuan-03.jpg"
+        "assets/works/brand-suyuan-02.jpg",
+        "assets/works/brand-suyuan-03.jpg",
+        "assets/works/brand-suyuan-04.jpg",
+        "assets/works/brand-suyuan-05.jpg",
+        "assets/works/brand-suyuan-06.jpg"
       ],
       tags: ["品牌定位", "标志设计", "标准字", "色彩体系", "包装延展"],
       desc: "<p>以苏州园林与东方香氛为灵感，为「苏园馥 Suyuan Fragrance」完成品牌定位、命名、标志、字体、色彩体系与包装延展。从品牌核心关键词到 VI 应用落地，构建一套完整的东方香氛品牌视觉系统。</p>",
@@ -23,6 +26,29 @@
         "品牌定位与视觉策略推导",
         "标志 / 标准字 / 色彩体系",
         "包装、物料与场景应用延展"
+      ]
+    },
+    {
+      id: "ui-suyu",
+      cat: "界面设计",
+      title: "塑语非遗学习小程序",
+      year: "2024",
+      category: "ui",
+      cover: "assets/works/ui-suyu-01.jpg",
+      images: [
+        "assets/works/ui-suyu-01.jpg",
+        "assets/works/ui-suyu-02.jpg",
+        "assets/works/ui-suyu-03.jpg",
+        "assets/works/ui-suyu-04.jpg",
+        "assets/works/ui-suyu-05.jpg"
+      ],
+      tags: ["UI设计", "小程序", "无障碍设计", "非遗文化", "AI手语辅助"],
+      desc: "<p>面向听障儿童的非遗技艺学习小程序。以天门糖塑为切入点，融合 AI 手语辅助课程、社区打卡、积分商城等功能，通过可视化、低门槛的交互设计，让传统文化学习对特殊群体更友好。</p>",
+      points: [
+        "用户研究与需求分析",
+        "信息架构与原型设计",
+        "界面视觉与组件规范",
+        "无障碍交互与情感化设计"
       ]
     },
     {
@@ -93,7 +119,16 @@
         "assets/works/creative-dunhuang-01.jpg",
         "assets/works/creative-dunhuang-02.jpg",
         "assets/works/creative-dunhuang-03.jpg",
-        "assets/works/creative-dunhuang-04.jpg"
+        "assets/works/creative-dunhuang-04.jpg",
+        "assets/works/creative-dunhuang-05.jpg",
+        "assets/works/creative-dunhuang-06.jpg",
+        "assets/works/creative-dunhuang-07.jpg",
+        "assets/works/creative-dunhuang-08.jpg",
+        "assets/works/creative-dunhuang-09.jpg",
+        "assets/works/creative-dunhuang-10.jpg",
+        "assets/works/creative-dunhuang-11.jpg",
+        "assets/works/creative-dunhuang-12.jpg",
+        "assets/works/creative-dunhuang-13.jpg"
       ],
       tags: ["毕业设计", "敦煌藻井", "文创延展"],
       desc: "<p>2025 毕业设计作品。以敦煌莫高窟藻井图案为研究对象，提取不同朝代纹样进行再设计与图案化表达，构建基于敦煌藻井的文创图案设计体系，并延展至丝巾、包装、文具等载体。</p>",
@@ -132,7 +167,7 @@
         "assets/works/other-book-01.jpg"
       ],
       tags: ["绘本", "封面", "插画"],
-      desc: "<p>以《龟兔赛跑》为主题的手绘本封面设计，用高饱和撞色与丰富场景叙事构建童话感，兼顾儿童绘本的趣味性与封面货架吸睛度。</p>",
+      desc: "<p>以经典寓言为灵感的儿童手绘本封面设计，用高饱和撞色与丰富场景叙事构建童话感，兼顾儿童绘本的趣味性与封面货架吸睛度。</p>",
       points: [
         "儿童绘本封面",
         "场景化叙事插画",
