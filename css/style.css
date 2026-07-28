@@ -706,3 +706,101 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .work-pager{padding-top:50px;padding-bottom:80px}
   .work-desc{font-size:16px}
 }
+
+/* ============================================================
+   INTERACTION ENHANCEMENTS (新增交互层)
+   ============================================================ */
+
+/* ---------- READING PROGRESS BAR ---------- */
+.reading-progress{
+  position:fixed;top:0;left:0;height:3px;width:0;
+  background:linear-gradient(90deg,var(--red),var(--red-2));
+  box-shadow:0 0 12px rgba(225,29,45,.6);
+  z-index:200;transition:width .08s linear;
+  pointer-events:none;
+}
+
+/* ---------- BACK TO TOP ---------- */
+.back-to-top{
+  position:fixed;right:32px;bottom:32px;
+  width:48px;height:48px;border-radius:50%;
+  background:var(--red);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  border:none;cursor:pointer;
+  box-shadow:0 8px 28px -6px rgba(225,29,45,.55);
+  opacity:0;transform:translateY(20px) scale(.8);
+  pointer-events:none;
+  transition:opacity .4s var(--ease),transform .4s var(--ease),background .3s;
+  z-index:90;
+}
+.back-to-top.show{opacity:1;transform:none;pointer-events:auto}
+.back-to-top:hover{background:var(--red-2);transform:translateY(-3px)}
+.back-to-top:active{transform:translateY(-1px) scale(.95)}
+@media (max-width:680px){
+  .back-to-top{right:20px;bottom:20px;width:42px;height:42px}
+}
+
+/* ---------- TOOL ICON GENTLE FLOAT ---------- */
+.tool-icon{animation:toolFloat 4s ease-in-out infinite}
+.tool-icon:nth-child(1){animation-delay:0s}
+.tool-icon:nth-child(2){animation-delay:.3s}
+.tool-icon:nth-child(3){animation-delay:.6s}
+.tool-icon:nth-child(4){animation-delay:.9s}
+.tool-icon:nth-child(5){animation-delay:1.2s}
+.tool-icon:nth-child(6){animation-delay:1.5s}
+@keyframes toolFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+.hero-tools:hover .tool-icon{animation-play-state:paused}
+/* hover 抬升需覆盖浮动 — 用 translate 组合 */
+.tool-icon:hover{animation-play-state:paused;transform:translateY(-6px)}
+
+/* ---------- CAP LIST HOVER ---------- */
+.cap-list li{
+  cursor:default;
+  transition:transform .35s var(--ease),border-color .35s var(--ease),padding-left .35s var(--ease);
+}
+.cap-list li:hover{
+  transform:translateX(6px);
+  border-color:var(--red);
+  padding-left:6px;
+}
+.cap-list li:hover span{color:var(--red-2);transition:color .35s}
+
+/* ---------- TIMELINE ITEM STAGGERED REVEAL ---------- */
+.tl-item.reveal{opacity:0;transform:translateX(-24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.tl-item.reveal.visible{opacity:1;transform:none}
+
+/* ---------- STAT HOVER + PROGRESS RING ---------- */
+.stat{position:relative;overflow:hidden}
+.stat-num{transition:transform .4s var(--ease);cursor:default;display:inline-block}
+.stat:hover .stat-num{transform:scale(1.1)}
+.stat-ring{
+  position:absolute;top:22px;right:22px;
+  width:42px;height:42px;
+  opacity:.55;transition:opacity .4s;
+}
+.stat:hover .stat-ring{opacity:1}
+.stat-ring circle{fill:none;stroke-width:2.5}
+.stat-ring .ring-bg{stroke:var(--line-2)}
+.stat-ring .ring-fg{
+  stroke:var(--red);
+  stroke-linecap:round;
+  transform:rotate(-90deg);transform-origin:center;
+  transition:stroke-dashoffset 1.8s var(--ease);
+}
+@media (max-width:680px){
+  .stat-ring{width:32px;height:32px;top:16px;right:16px}
+  .stat-ring circle{stroke-width:2.5}
+}
+
+/* ---------- WORK FILTER TRANSITION (淡入淡出) ---------- */
+.work{
+  transition:transform .6s var(--ease),box-shadow .6s var(--ease),border-color .4s,opacity .4s var(--ease);
+}
+.work.filtering-out{
+  opacity:0;transform:scale(.92);
+  pointer-events:none;
+  transition:opacity .35s var(--ease),transform .35s var(--ease);
+}
