@@ -24,6 +24,45 @@
     });
   });
 
+  /* ---------- READING PROGRESS BAR ---------- */
+  var progressEl = document.getElementById("readingProgress");
+  if(progressEl){
+    var progTicking = false;
+    function updateProgress(){
+      var sh = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = sh > 0 ? (window.scrollY / sh) * 100 : 0;
+      progressEl.style.width = Math.min(100, Math.max(0, pct)) + "%";
+    }
+    window.addEventListener("scroll", function(){
+      if(progTicking) return;
+      progTicking = true;
+      requestAnimationFrame(function(){ updateProgress(); progTicking = false; });
+    }, {passive:true});
+    window.addEventListener("resize", updateProgress, {passive:true});
+    updateProgress();
+  }
+
+  /* ---------- BACK TO TOP ---------- */
+  var backBtn = document.getElementById("backToTop");
+  if(backBtn){
+    var btTicking = false;
+    window.addEventListener("scroll", function(){
+      if(btTicking) return;
+      btTicking = true;
+      requestAnimationFrame(function(){
+        if(window.scrollY > window.innerHeight * 0.8){
+          backBtn.classList.add("show");
+        } else {
+          backBtn.classList.remove("show");
+        }
+        btTicking = false;
+      });
+    }, {passive:true});
+    backBtn.addEventListener("click", function(){
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  }
+
   /* ---------- REVEAL ---------- */
   var revealEls = document.querySelectorAll(".reveal");
   if("IntersectionObserver" in window){
@@ -75,19 +114,97 @@
     stats.forEach(animateCount);
   }
 
-  /* ---------- FILTERS ---------- */
+  /* ---------- STAT PROGRESS RINGS (装饰性进度环) ---------- */
+  var statEls = document.querySelectorAll(".stat");
+  var ringPercents = [88, 72, 92, 78]; /* 依次对应 CTR / 转化率 / GMV / 大促 */
+  var SVG_NS = "http://www.w3.org/2000/svg";
+  statEls.forEach(function(stat, i){
+    var pct = ringPercents[i] || 70;
+    var radius = 18;
+    var circumference = 2 * Math.PI * radius;
+    var dashOffset = circumference * (1 - pct / 100);
+
+    var svg = document.createElementNS(SVG_NS, "svg");
+    svg.setAttribute("class", "stat-ring");
+    svg.setAttribute("viewBox", "0 0 42 42");
+
+    var bg = document.createElementNS(SVG_NS, "circle");
+    bg.setAttribute("class", "ring-bg");
+    bg.setAttribute("cx", "21"); bg.setAttribute("cy", "21"); bg.setAttribute("r", radius);
+
+    var fg = document.createElementNS(SVG_NS, "circle");
+    fg.setAttribute("class", "ring-fg");
+    fg.setAttribute("cx", "21"); fg.setAttribute("cy", "21"); fg.setAttribute("r", radius);
+    fg.setAttribute("stroke-dasharray", circumference);
+    fg.setAttribute("stroke-dashoffset", circumference);
+
+    svg.appendChild(bg);
+    svg.appendChild(fg);
+    stat.appendChild(svg);
+
+    /* 滚动到视口时，等数字滚动完再画环 */
+    if("IntersectionObserver" in window){
+      var rio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            setTimeout(function(){ fg.style.strokeDashoffset = dashOffset; }, 700);
+            rio.unobserve(e.target);
+          }
+        });
+      }, {threshold:0.5});
+      rio.observe(stat);
+    } else {
+      fg.style.strokeDashoffset = dashOffset;
+    }
+  });
+
+  /* ---------- FILTERS (with fade transition) ---------- */
   var filterBtns = document.querySelectorAll(".filter");
   var works = Array.prototype.slice.call(document.querySelectorAll(".work"));
+  var filterTimer = null;
 
   filterBtns.forEach(function(btn){
     btn.addEventListener("click", function(){
       filterBtns.forEach(function(b){ b.classList.remove("is-active"); });
       btn.classList.add("is-active");
       var f = btn.dataset.filter;
+
+      if(filterTimer){ clearTimeout(filterTimer); filterTimer = null; }
+
       works.forEach(function(w){
-        var show = (f === "all" || w.dataset.category === f);
-        w.classList.toggle("is-hidden", !show);
+        var shouldShow = (f === "all" || w.dataset.category === f);
+        var isCurrentlyHidden = w.classList.contains("is-hidden");
+
+        if(shouldShow){
+          if(isCurrentlyHidden){
+            /* 从隐藏恢复：先显示但透明，双 rAF 后淡入 */
+            w.classList.remove("is-hidden");
+            w.classList.add("filtering-out");
+            requestAnimationFrame(function(){
+              requestAnimationFrame(function(){
+                w.classList.remove("filtering-out");
+              });
+            });
+          }
+          /* 已经在显示的卡片不动 */
+        } else {
+          /* 不该显示：淡出 */
+          if(!isCurrentlyHidden){
+            w.classList.add("filtering-out");
+          }
+        }
       });
+
+      /* 360ms 后真正隐藏淡出的卡片 */
+      filterTimer = setTimeout(function(){
+        works.forEach(function(w){
+          if(w.classList.contains("filtering-out") && !w.classList.contains("is-hidden")){
+            var stillHide = !(f === "all" || w.dataset.category === f);
+            if(stillHide){ w.classList.add("is-hidden"); }
+          }
+        });
+        filterTimer = null;
+      }, 360);
     });
   });
 
