@@ -154,15 +154,29 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 /* playful fun-line under headline */
 .hero-fun{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--mono);font-size:13px;color:var(--red);
-  padding:9px 18px;margin-bottom:30px;
+  display:inline-flex;flex-wrap:wrap;align-items:center;gap:10px 14px;
+  font-family:var(--mono);font-size:13px;color:var(--white);
+  padding:12px 20px;margin-bottom:30px;
   border:1px solid rgba(225,29,45,.45);border-radius:40px;
   background:rgba(225,29,45,.08);
   backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   opacity:0;animation:heroIn .9s var(--ease) .7s forwards
 }
 .hero-fun::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);animation:blink 1.6s ease-in-out infinite}
+
+/* software tool icons */
+.hero-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tool-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:30px;height:26px;padding:0 8px;
+  font-family:var(--grotesk);font-size:11px;font-weight:700;letter-spacing:.5px;
+  color:var(--white);
+  background:var(--surface);border:1px solid var(--line-2);border-radius:6px;
+  box-shadow:0 3px 10px -4px rgba(0,0,0,.4);
+  transition:transform .25s,border-color .25s
+}
+.tool-icon:hover{transform:translateY(-3px);border-color:var(--red)}
+.tool-wide{padding:0 9px;font-size:10px}
 .hero-cta{display:flex;gap:16px;margin-bottom:60px;opacity:0;animation:heroIn .9s var(--ease) .9s forwards}
 .hero-scroll{display:flex;align-items:center;gap:14px;opacity:0;animation:heroIn .9s var(--ease) 1s forwards}
 .scroll-line{width:50px;height:1px;background:var(--red);position:relative;overflow:hidden}
@@ -563,7 +577,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   .hero{padding:120px 0 60px}
   .hero-grid{grid-template-columns:1.2fr .8fr;gap:24px}
-  .hero-fun{font-size:11px;padding:7px 14px;margin-bottom:22px}
+  .hero-fun{font-size:11px;padding:10px 16px;margin-bottom:22px;border-radius:24px}
+  .hero-fun > span:first-of-type{width:100%}
+  .tool-icon{min-width:26px;height:22px;font-size:9px;padding:0 6px}
+  .tool-wide{padding:0 7px;font-size:9px}
   .hero-cta{flex-wrap:wrap;gap:12px;margin-bottom:40px}
   .hero-cta .btn{padding:13px 24px;font-size:13px}
   .portrait-frame{max-width:180px}
