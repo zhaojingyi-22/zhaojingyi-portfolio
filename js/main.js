@@ -114,6 +114,46 @@
     });
   });
 
+  /* ---------- WORK CARDS 3D TILT + MAGNETIC HOVER ---------- */
+  if(window.matchMedia("(pointer:fine)").matches){
+    works.forEach(function(card){
+      var title = card.querySelector(".work-title");
+      var view = card.querySelector(".work-view");
+      var index = card.querySelector(".work-index");
+      var isFeatured = card === works[0];
+
+      card.addEventListener("mousemove", function(e){
+        var r = card.getBoundingClientRect();
+        var dx = (e.clientX - r.left) / r.width - .5;
+        var dy = (e.clientY - r.top) / r.height - .5;
+        var ry = dx * 12;
+        var rx = -dy * 12;
+        var mx = dx * 10;
+        var my = dy * 10;
+
+        card.style.transform = "perspective(1000px) rotateX(" + rx + "deg) rotateY(" + ry + "deg) translateY(-10px)";
+
+        if(view){
+          view.style.transform = "scale(1) rotate(0) translate(" + (dx * 6) + "px, " + (dy * 6) + "px)";
+          view.style.opacity = "1";
+        }
+        if(index){
+          index.style.transform = "scale(1.12) translate(" + (-dx * 4) + "px, " + (-dy * 4) + "px)";
+        }
+        if(title){
+          title.style.transform = "translateX(" + (dx * 8 + 4) + "px)";
+        }
+      });
+
+      card.addEventListener("mouseleave", function(){
+        card.style.transform = "";
+        if(view){ view.style.transform = ""; view.style.opacity = ""; }
+        if(index){ index.style.transform = ""; }
+        if(title){ title.style.transform = ""; }
+      });
+    });
+  }
+
   /* ---------- HERO 头像 3D 跟随鼠标 ---------- */
   var portraitFrame = document.getElementById("portraitFrame");
   var heroSec = document.querySelector(".hero");
