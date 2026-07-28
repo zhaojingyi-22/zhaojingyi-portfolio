@@ -373,7 +373,17 @@ window.CDN_BASE = location.hostname.indexOf('github.io') !== -1
 <script>
 if (window.CDN_BASE) {
   document.querySelectorAll('img[src^="assets/"]').forEach(function(img) {
-    img.src = window.CDN_BASE + img.getAttribute('src');
+    var origSrc = img.getAttribute('src');
+    var cdnSrc = window.CDN_BASE + origSrc;
+    img.src = cdnSrc;
+    /* fallback: jsDelivr fails → fastly mirror → GitHub Pages direct */
+    img.addEventListener('error', function() {
+      if (img.src.indexOf('cdn.jsdelivr.net') !== -1) {
+        img.src = cdnSrc.replace('cdn.jsdelivr.net', 'fastly.jsdelivr.net');
+      } else if (img.src.indexOf('fastly.jsdelivr.net') !== -1) {
+        img.src = origSrc;
+      }
+    }, {once: true});
   });
 }
 </script>
