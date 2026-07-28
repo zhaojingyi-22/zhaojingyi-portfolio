@@ -151,6 +151,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 @keyframes accentPop{0%{opacity:0;transform:scale(.7) translateY(8px)}100%{opacity:1;transform:none}}
 
 .hero-sub{font-size:16px;color:var(--gray);max-width:520px;margin-bottom:40px;line-height:1.8;opacity:0;animation:heroIn .9s var(--ease) .75s forwards}
+
+/* playful fun-line under headline */
+.hero-fun{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:13px;color:var(--red);
+  padding:9px 18px;margin-bottom:30px;
+  border:1px solid rgba(225,29,45,.45);border-radius:40px;
+  background:rgba(225,29,45,.08);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;animation:heroIn .9s var(--ease) .7s forwards
+}
+.hero-fun::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);animation:blink 1.6s ease-in-out infinite}
 .hero-cta{display:flex;gap:16px;margin-bottom:60px;opacity:0;animation:heroIn .9s var(--ease) .9s forwards}
 .hero-scroll{display:flex;align-items:center;gap:14px;opacity:0;animation:heroIn .9s var(--ease) 1s forwards}
 .scroll-line{width:50px;height:1px;background:var(--red);position:relative;overflow:hidden}
@@ -160,7 +172,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 @keyframes heroIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
 
 /* 头像区 */
-.hero-portrait{display:flex;flex-direction:column;align-items:center;gap:30px;opacity:0;animation:portraitFlyIn 1.2s var(--ease) .35s forwards}
+.hero-portrait{position:relative;display:flex;flex-direction:column;align-items:center;gap:30px;opacity:0;animation:portraitFlyIn 1.2s var(--ease) .35s forwards}
 @keyframes portraitFlyIn{from{opacity:0;transform:translateX(80px) rotate(3deg)}to{opacity:1;transform:none}}
 .portrait-frame{position:relative;max-width:360px;transition:transform .45s var(--ease);transform-style:preserve-3d;will-change:transform}
 .portrait-frame::before{content:"";position:absolute;top:-16px;left:-16px;width:80px;height:80px;border-top:2px solid var(--red);border-left:2px solid var(--red);transition:width .5s var(--ease),height .5s var(--ease)}
@@ -168,6 +180,20 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .portrait-frame:hover::before,.portrait-frame:hover::after{width:104px;height:104px}
 .portrait-frame img{width:100%;filter:grayscale(.15) contrast(1.05)}
 .portrait-tag{position:absolute;bottom:18px;left:18px;font-family:var(--mono);font-size:11px;color:var(--white);background:var(--red);padding:4px 10px;letter-spacing:2px}
+
+/* floating skill tags around portrait */
+.hero-p-tags{position:absolute;inset:0;z-index:5;pointer-events:none}
+.p-tag{
+  position:absolute;font-family:var(--mono);font-size:11px;letter-spacing:1px;
+  padding:6px 12px;border-radius:30px;white-space:nowrap;
+  background:rgba(225,29,45,.9);color:#fff;border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 6px 22px -6px rgba(225,29,45,.5);
+  opacity:0;animation:tagPop .8s var(--ease) 1.4s forwards
+}
+.p-tag-1{top:8%;right:-12%;animation-delay:1.4s}
+.p-tag-2{bottom:22%;left:-10%;animation-delay:1.55s;background:var(--surface);color:var(--red);border-color:var(--line-2);box-shadow:0 6px 22px -6px rgba(0,0,0,.45)}
+.p-tag-3{top:42%;right:-8%;animation-delay:1.7s;background:#fff;color:var(--bg);border-color:#fff;box-shadow:0 6px 22px -6px rgba(255,255,255,.25)}
+@keyframes tagPop{0%{opacity:0;transform:scale(.6) translateY(10px)}100%{opacity:1;transform:scale(1) translateY(0)}}
 
 /* 旋转徽章 */
 .hero-badge{position:relative;width:96px;height:96px;z-index:5;animation:badgeFloat 4s ease-in-out infinite}
@@ -183,8 +209,24 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .float-asterisk{top:22%;right:8%;font-size:32px;color:var(--red);text-shadow:0 0 14px rgba(225,29,45,.5);animation:floatSpin 8s ease-in-out infinite}
 .float-cross{bottom:30%;left:6%;font-size:24px;color:var(--gray);animation:floatPulse 4s ease-in-out infinite}
 .float-circle{top:58%;right:12%;width:16px;height:16px;border:1.5px solid var(--red);border-radius:50%;box-shadow:0 0 12px rgba(225,29,45,.4);animation:floatPulse 5s ease-in-out infinite .5s}
+.float-ring{bottom:18%;right:18%;width:50px;height:50px;border:1px solid rgba(225,29,45,.35);border-radius:50%;animation:floatSpin 12s linear infinite 1s}
+.float-bubble{top:12%;left:8%;font-family:var(--grotesk);font-size:13px;font-weight:700;color:var(--bg);background:#fff;padding:8px 14px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.35);animation:floatY 5s ease-in-out infinite .3s}
+.float-bubble::after{content:"";position:absolute;bottom:-6px;left:12px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #fff}
+.float-star{top:46%;left:4%;font-size:20px;color:var(--red);text-shadow:0 0 10px rgba(225,29,45,.5);animation:floatSpin 9s ease-in-out infinite .8s}
+.float-dots{bottom:10%;left:18%;width:60px;height:60px;background-image:radial-gradient(circle,rgba(225,29,45,.35) 2px,transparent 2px);background-size:12px 12px;animation:floatY 6s ease-in-out infinite 1.2s}
 @keyframes floatSpin{0%,100%{transform:rotate(0) translateY(0)}50%{transform:rotate(180deg) translateY(-12px)}}
 @keyframes floatPulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.3);opacity:.2}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* subtle dotted pattern behind hero */
+.hero-dots{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background-image:radial-gradient(circle,rgba(225,29,45,.18) 1.5px,transparent 1.5px);
+  background-size:34px 34px;
+  mask-image:radial-gradient(circle at 70% 40%,#000 0%,transparent 55%);
+  -webkit-mask-image:radial-gradient(circle at 70% 40%,#000 0%,transparent 55%);
+  animation:heroDotsMove 16s linear infinite
+}
+@keyframes heroDotsMove{0%{background-position:0 0}100%{background-position:34px 34px}}
 
 .hero-bg-text{position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);font-family:var(--grotesk);font-weight:700;font-size:clamp(120px,22vw,320px);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.04);letter-spacing:10px;z-index:1;pointer-events:none;white-space:nowrap;animation:bgDrift 18s ease-in-out infinite}
 @keyframes bgDrift{0%,100%{transform:translateX(-50%)}50%{transform:translateX(-42%)}}
@@ -215,7 +257,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .about{padding:130px 0;border-top:1px solid var(--line)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
 .about-bio{font-size:16px;color:var(--gray);line-height:1.9;margin-bottom:22px;max-width:520px}
-.about-bio:first-of-type{color:var(--white);font-size:17px}
+.about-bio-lead{color:var(--white);font-size:17px}
+.about-bio-ach{color:var(--white);font-size:16px;line-height:1.85}
 .about-cap{margin-top:50px}
 .cap-title{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:3px;margin-bottom:24px;text-transform:uppercase}
 .cap-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -520,15 +563,25 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   .hero{padding:120px 0 60px}
   .hero-grid{grid-template-columns:1.2fr .8fr;gap:24px}
+  .hero-fun{font-size:11px;padding:7px 14px;margin-bottom:22px}
   .hero-cta{flex-wrap:wrap;gap:12px;margin-bottom:40px}
   .hero-cta .btn{padding:13px 24px;font-size:13px}
   .portrait-frame{max-width:180px}
   .portrait-frame::before,.portrait-frame::after{width:50px;height:50px}
   .hero-badge{width:64px;height:64px}
   .badge-text{font-size:7px}
+  .p-tag{font-size:9px;padding:5px 10px}
+  .p-tag-1{right:-6%}
+  .p-tag-2{left:-4%}
+  .p-tag-3{right:-2%}
   .float-asterisk{font-size:20px}
   .float-cross{font-size:16px}
   .float-circle{width:10px;height:10px}
+  .float-ring{width:34px;height:34px}
+  .float-bubble{font-size:10px;padding:6px 10px;top:8%;left:4%}
+  .float-star{font-size:14px}
+  .float-dots{width:40px;height:40px;background-size:10px 10px}
+  .hero-dots{opacity:.25}
   /* 保持网格秩序，与电脑一致：不降到单列 */
   .works-grid{grid-template-columns:repeat(2,1fr);gap:22px 14px}
   .works-grid::before{display:none}
@@ -554,8 +607,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .g-ring{width:50px;height:50px}
   .filters{gap:8px;margin-bottom:36px}
   .filter{padding:9px 16px;font-size:12px}
-  .cap-list{grid-template-columns:1fr 1fr;gap:14px}
-  .cap-list li{font-size:14px;gap:10px}
+  .cap-list{grid-template-columns:1fr 1fr;gap:10px}
+  .cap-list li{font-size:13px;gap:8px;padding-bottom:10px}
+  .cap-list span{font-size:11px}
   .stats-grid{grid-template-columns:1fr 1fr;gap:32px 18px}
   .stat{padding:24px 20px}
   .stat-num{font-size:clamp(34px,9vw,46px)}
@@ -563,15 +617,34 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .stat-note{font-size:11px}
   .filters{gap:8px;margin-bottom:40px}
   .filter{padding:8px 14px;font-size:12px}
+  .tags{gap:8px;margin-bottom:14px}
+  .tags span{padding:6px 13px;font-size:12px}
+  .soft-skills{font-size:12px;line-height:1.7}
   .about{padding:90px 0}
+  .about-grid{grid-template-columns:1fr;gap:36px}
+  .about-left,.about-right{max-width:100%}
+  .about-bio{font-size:15px;line-height:1.85;margin-bottom:14px;max-width:100%}
+  .about-bio-lead{color:var(--white);font-size:16px;font-weight:400}
+  /* achievement bio: highlight card */
+  .about-bio-ach{
+    color:var(--white);font-size:14px;line-height:1.8;
+    padding:18px 16px 16px 20px;margin:0 0 28px;
+    background:rgba(225,29,45,.06);
+    border-left:3px solid var(--red);
+    border-radius:0 10px 10px 0;
+    max-width:100%
+  }
+  .about-cap{margin-top:8px}
+  .cap-title{margin-bottom:16px}
+  .timeline,.interests{margin-bottom:36px}
   .works{padding:90px 0}
   .stats{padding:90px 0}
   .section-head{margin-bottom:44px}
   .section-title{font-size:clamp(32px,9vw,48px)}
-  .tl-item{grid-template-columns:78px 1fr;gap:12px;padding:18px 0}
-  .tl-year{font-size:12px}
-  .tl-body h4{font-size:15px}
-  .tl-body p{font-size:13px}
+  .tl-item{grid-template-columns:78px 1fr;gap:12px;padding:16px 0}
+  .tl-year{font-size:11px;letter-spacing:.5px}
+  .tl-body h4{font-size:14px}
+  .tl-body p{font-size:12px;line-height:1.7}
   .footer-inner{justify-content:center;text-align:center}
   .socials{gap:18px;flex-wrap:wrap}
   .marquee{padding:12px 0}
