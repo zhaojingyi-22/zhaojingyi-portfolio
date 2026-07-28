@@ -18,6 +18,20 @@ window.CDN_BASE = location.hostname.indexOf('github.io') !== -1
 </head>
 <body>
 
+<!-- GLOBAL DYNAMIC DECOR LAYER -->
+<div class="global-deco" aria-hidden="true">
+  <canvas id="cursorTrail" class="g-cursor-trail"></canvas>
+  <span class="g-orb g-orb-1"></span>
+  <span class="g-orb g-orb-2"></span>
+  <span class="g-orb g-orb-3"></span>
+  <span class="g-float g-asterisk">✦</span>
+  <span class="g-float g-cross">+</span>
+  <span class="g-float g-dot"></span>
+  <span class="g-float g-ring"></span>
+  <span class="g-particles" id="gParticles"></span>
+  <span class="g-cursor-glow" id="cursorGlow"></span>
+</div>
+
 <!-- NAV -->
 <header class="nav" id="nav">
   <div class="container nav-inner">
@@ -79,7 +93,9 @@ window.CDN_BASE = location.hostname.indexOf('github.io') !== -1
 <!-- MARQUEE -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>品牌 VI 设计</span><span class="marquee-dot">●</span><span>电商详情页</span><span class="marquee-dot">●</span><span>大促活动视觉</span><span class="marquee-dot">●</span><span>私域物料</span><span class="marquee-dot">●</span><span>品牌 VI 设计</span><span class="marquee-dot">●</span><span>电商详情页</span><span class="marquee-dot">●</span><span>大促活动视觉</span><span class="marquee-dot">●</span><span>私域物料</span><span class="marquee-dot">●</span>
+    <span>地球online初级玩家</span><span class="marquee-dot">●</span><span>勤勤恳恳赚钱升级装备</span><span class="marquee-dot">●</span><span>争取进入2.0版本的成功牛马</span><span class="marquee-dot">●</span>
+    <span>地球online初级玩家</span><span class="marquee-dot">●</span><span>勤勤恳恳赚钱升级装备</span><span class="marquee-dot">●</span><span>争取进入2.0版本的成功牛马</span><span class="marquee-dot">●</span>
+    <span>地球online初级玩家</span><span class="marquee-dot">●</span><span>勤勤恳恳赚钱升级装备</span><span class="marquee-dot">●</span><span>争取进入2.0版本的成功牛马</span><span class="marquee-dot">●</span>
   </div>
 </div>
 
@@ -187,6 +203,9 @@ window.CDN_BASE = location.hostname.indexOf('github.io') !== -1
     <span class="deco-star">✦</span>
     <span class="deco-cross">+</span>
     <span class="deco-dots"></span>
+    <span class="glow-orb glow-orb-1"></span>
+    <span class="glow-orb glow-orb-2"></span>
+    <span class="grid-particles" id="gridParticles"></span>
   </div>
   <div class="container">
     <div class="section-head reveal">
