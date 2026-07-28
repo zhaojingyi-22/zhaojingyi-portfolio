@@ -154,6 +154,140 @@
     });
   }
 
+  /* ---------- GLOBAL DECOR: particles + cursor glow ---------- */
+  (function(){
+    var gp = document.getElementById("gParticles");
+    if(gp){
+      var n = 18;
+      for(var i=0;i<n;i++){
+        var p = document.createElement("i");
+        p.className = "particle";
+        p.style.left = Math.random()*100 + "%";
+        p.style.top = Math.random()*100 + "%";
+        p.style.animationDelay = (Math.random()*8) + "s";
+        p.style.animationDuration = (6 + Math.random()*6) + "s";
+        p.style.opacity = (.12 + Math.random()*.3);
+        gp.appendChild(p);
+      }
+    }
+    var cg = document.getElementById("cursorGlow");
+    if(cg && window.matchMedia("(pointer:fine)").matches){
+      var gTicking = false;
+      window.addEventListener("mousemove", function(e){
+        cg.classList.add("on");
+        if(gTicking) return;
+        gTicking = true;
+        requestAnimationFrame(function(){
+          cg.style.left = e.clientX + "px";
+          cg.style.top = e.clientY + "px";
+          gTicking = false;
+        });
+      });
+      document.addEventListener("mouseleave", function(){ cg.classList.remove("on"); });
+    }
+
+    /* ---------- CANVAS CURSOR TRAIL (gradient lines following mouse) ---------- */
+    var trailCanvas = document.getElementById("cursorTrail");
+    if(trailCanvas && window.matchMedia("(pointer:fine)").matches){
+      var tctx = trailCanvas.getContext("2d");
+      var trail = [];
+      var MAX_PTS = 18;
+      var LIFE = 350; /* ms — short & snappy */
+
+      function tResize(){
+        trailCanvas.width = window.innerWidth;
+        trailCanvas.height = window.innerHeight;
+      }
+      tResize();
+      window.addEventListener("resize", tResize);
+
+      var lastSample = 0;
+      window.addEventListener("mousemove", function(e){
+        var now = performance.now();
+        if(now - lastSample < 8) return;
+        lastSample = now;
+        trail.push({x:e.clientX, y:e.clientY, t:now});
+        if(trail.length > MAX_PTS) trail.shift();
+      });
+      document.addEventListener("mouseleave", function(){ trail = []; });
+
+      function tDraw(){
+        tctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+        var now = performance.now();
+        while(trail.length > 0 && now - trail[0].t > LIFE) trail.shift();
+
+        if(trail.length > 2){
+          var oldest = trail[0], newest = trail[trail.length - 1];
+
+          /* smooth quadratic path in one stroke */
+          tctx.beginPath();
+          tctx.moveTo((trail[0].x+trail[1].x)/2, (trail[0].y+trail[1].y)/2);
+          for(var i = 1; i < trail.length - 1; i++){
+            var p = trail[i];
+            var mx = (p.x + trail[i+1].x) / 2;
+            var my = (p.y + trail[i+1].y) / 2;
+            tctx.quadraticCurveTo(p.x, p.y, mx, my);
+          }
+
+          /* single gradient: transparent → light red at head */
+          var grad = tctx.createLinearGradient(oldest.x, oldest.y, newest.x, newest.y);
+          grad.addColorStop(0,   "rgba(225,29,45,0)");
+          grad.addColorStop(.5,  "rgba(225,29,45,0.15)");
+          grad.addColorStop(1,  "rgba(255,59,70,0.5)");
+
+          tctx.strokeStyle = grad;
+          tctx.lineWidth = 2;
+          tctx.lineCap = "round";
+          tctx.lineJoin = "round";
+          tctx.stroke();
+        }
+        requestAnimationFrame(tDraw);
+      }
+      tDraw();
+    }
+  })();
+
+  /* ---------- WORKS 区鼠标跟随光晕 + 粒子 ---------- */
+  var worksSec = document.getElementById("works");
+  if(worksSec){
+    /* spotlight */
+    var spot = document.createElement("span");
+    spot.className = "works-spotlight";
+    worksSec.appendChild(spot);
+    var wTicking = false;
+    var wOver = false;
+    worksSec.addEventListener("mouseenter", function(){ wOver = true; spot.classList.add("on"); });
+    worksSec.addEventListener("mouseleave", function(){ wOver = false; spot.classList.remove("on"); });
+    worksSec.addEventListener("mousemove", function(e){
+      if(wTicking) return;
+      wTicking = true;
+      requestAnimationFrame(function(){
+        var r = worksSec.getBoundingClientRect();
+        var x = e.clientX - r.left;
+        var y = e.clientY - r.top;
+        spot.style.left = x + "px";
+        spot.style.top = y + "px";
+        wTicking = false;
+      });
+    });
+
+    /* floating particles inside works-deco */
+    var gp = document.getElementById("gridParticles");
+    if(gp){
+      var pc = 14;
+      for(var pi=0; pi<pc; pi++){
+        var p = document.createElement("i");
+        p.className = "particle";
+        p.style.left = Math.random()*100 + "%";
+        p.style.top = Math.random()*100 + "%";
+        p.style.animationDelay = (Math.random()*6) + "s";
+        p.style.animationDuration = (5 + Math.random()*5) + "s";
+        p.style.opacity = (.15 + Math.random()*.3);
+        gp.appendChild(p);
+      }
+    }
+  }
+
   /* ---------- HERO 头像 3D 跟随鼠标 ---------- */
   var portraitFrame = document.getElementById("portraitFrame");
   var heroSec = document.querySelector(".hero");
